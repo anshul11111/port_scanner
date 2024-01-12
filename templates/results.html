@@ -8,8 +8,8 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif; /* Change the font family */
-           background: linear-gradient(59deg, #007bff, #28a745, #dc3545); /* Change the color scheme */
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(59deg, #007bff, #28a745, #dc3545);
             background-size: 1200% 1200%;
             animation: backgroundAnimation 15s ease infinite;
             display: flex;
@@ -17,17 +17,16 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            color: #03396c; /* Change the text color */
+            color: #03396c;
         }
 
         #container {
-            
             padding: 20px;
             width: 100%;
             max-width: 600px;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.5); /* Adjust the background color to match the form */
-            border-radius: 15px; /* Adjust the border-radius for rounded corners */
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin: 20px;
         }
@@ -38,17 +37,16 @@
         }
 
         h1 {
-            color: #000; /* Change the h1 color */
-            font-size: 3rem; /* Increased font size */
-            animation: glowAnimation 5s ease-in-out infinite, colorAnimation 6s ease infinite; /* Add color animation */
+            color: #000;
+            font-size: 3rem;
+            animation: glowAnimation 5s ease-in-out infinite, colorAnimation 6s ease infinite;
         }
 
-       h2 {
-    color: #000;
-    font-family: cursive;
-    font-size: 1.4rem;
-}
-
+        h2 {
+            color: #000;
+            font-family: cursive;
+            font-size: 1.4rem;
+        }
 
         @keyframes glowAnimation {
             0%, 100% {
@@ -64,7 +62,7 @@
                 color: #000;
             }
             50% {
-                color: black; /* Use transparent to reveal the background gradient */
+                color: black;
             }
         }
 
@@ -75,13 +73,13 @@
 
         li {
             margin-bottom: 8px;
-            font-size: 1.5rem; /* Increased font size */
+            font-size: 1.5rem;
         }
 
         li.text-success {
             color: #28a745;
             font-size: 1.5rem;
-            font-weight:bold;
+            font-weight: bold;
         }
 
         li.text-danger {
@@ -89,9 +87,13 @@
             font-size: 1.5rem;
         }
 
-        /* Media Queries for Improved Responsiveness */
+        .no-open-ports {
+            color: #28a745;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
 
-        /* For screens smaller than 600px */
+        /* Media Queries for Improved Responsiveness */
         @media (max-width: 600px) {
             #container {
                 padding: 10px;
@@ -99,7 +101,6 @@
             }
         }
 
-        /* For screens smaller than 400px */
         @media (max-width: 400px) {
             h1 {
                 font-size: 1.5em;
@@ -110,7 +111,6 @@
             }
         }
 
-        /* Animation */
         @keyframes backgroundAnimation {
             0% { background-position: 0% 82% }
             50% { background-position: 100% 19% }
@@ -123,12 +123,16 @@
         <h1>Port Scanner Results</h1>
         <h2>Scanning results for target: {{ target }}</h2>
 
-        <ul>
-            {% for port, status in results.items() %}
-                {% set simplified_status = status.replace('\x1b[32m', '').replace('\x1b[0m', '').replace('\x1b[31m', '') %}
-                <li class="{{ 'text-success' if 'Open' in status else 'text-danger' }}">Port {{ port }}: {{ simplified_status }}</li>
-            {% endfor %}
-        </ul>
+        {% if results %}
+            <ul>
+                {% for port, status in results.items() %}
+                    {% set simplified_status = status.replace('\x1b[32m', '').replace('\x1b[0m', '').replace('\x1b[31m', '') %}
+                    <li class="{{ 'text-success' if 'Open' in status else 'text-danger' }}">Port {{ port }}: {{ simplified_status }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-open-ports">No open ports found.</p>
+        {% endif %}
     </div>
 </body>
 </html>
