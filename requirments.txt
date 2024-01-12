@@ -1,0 +1,6 @@
+asyncio
+flask
+colorama
+socket
+pyfiglet
+gunicorn
