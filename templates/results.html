@@ -8,34 +8,64 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(96deg, #981f1f, #2a8714, #234b8b);
-            background-size: 600% 600%;
-            animation: backgroundAnimation 10s ease infinite;
+            font-family: 'Roboto', sans-serif; /* Change the font family */
+           background: linear-gradient(59deg, #007bff, #28a745, #dc3545); /* Change the color scheme */
+            background-size: 1200% 1200%;
+            animation: backgroundAnimation 15s ease infinite;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            color: #03396c; /* Change the text color */
         }
 
         #container {
+            
             padding: 20px;
             width: 100%;
             max-width: 600px;
             text-align: center;
-            background-color: #444;
-            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.5); /* Adjust the background color to match the form */
+            border-radius: 15px; /* Adjust the border-radius for rounded corners */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin: 20px;
         }
 
-        h1, p, li {
+        p, li {
+            font-family: cursive;
             color: #fff;
         }
 
         h1 {
-            color: #007bff;
+            color: #000; /* Change the h1 color */
+            font-size: 3rem; /* Increased font size */
+            animation: glowAnimation 5s ease-in-out infinite, colorAnimation 6s ease infinite; /* Add color animation */
+        }
+
+       h2 {
+    color: #000;
+    font-family: cursive;
+    font-size: 1.4rem;
+}
+
+
+        @keyframes glowAnimation {
+            0%, 100% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            }
+            50% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        @keyframes colorAnimation {
+            0%, 100% {
+                color: #000;
+            }
+            50% {
+                color: black; /* Use transparent to reveal the background gradient */
+            }
         }
 
         ul {
@@ -45,14 +75,18 @@
 
         li {
             margin-bottom: 8px;
+            font-size: 1.5rem; /* Increased font size */
         }
 
         li.text-success {
             color: #28a745;
+            font-size: 1.5rem;
+            font-weight:bold;
         }
 
         li.text-danger {
             color: #dc3545;
+            font-size: 1.5rem;
         }
 
         /* Media Queries for Improved Responsiveness */
@@ -78,16 +112,16 @@
 
         /* Animation */
         @keyframes backgroundAnimation {
-            0% { background-position: 0% 32% }
-            50% { background-position: 100% 69% }
-            100% { background-position: 0% 32% }
+            0% { background-position: 0% 82% }
+            50% { background-position: 100% 19% }
+            100% { background-position: 0% 82% }
         }
     </style>
 </head>
 <body>
     <div id="container">
         <h1>Port Scanner Results</h1>
-        <p>Scanning results for target: {{ target }}</p>
+        <h2>Scanning results for target: {{ target }}</h2>
 
         <ul>
             {% for port, status in results.items() %}

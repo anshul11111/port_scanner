@@ -20,7 +20,7 @@
             font-family: var(--font-family); /* Use the custom font */
             background: linear-gradient(59deg, #011f4b, #03396c, #005b96, #6497b1, #25e28a, #011f4b);
             background-size: 1200% 1200%;
-            animation: backgroundAnimation 6s ease infinite;
+            animation: backgroundAnimation 10s ease infinite;
             color: #03396c;
             margin: 0;
             padding: 80px;
@@ -32,11 +32,30 @@
             margin-bottom: 20px;
         }
 
-        h1 {
-            
-            color: var(--primary-color);
-            font-size: 3rem; /* Increased font size */
-        }
+     h1 {
+    font-size: 4rem;
+    animation: glowAnimation 5s ease-in-out infinite, colorAnimation 6s ease infinite; /* Add color animation */
+}
+
+@keyframes glowAnimation {
+    0%, 100% {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    50% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+}
+
+@keyframes colorAnimation {
+    0%, 100% {
+        color: #000;
+    }
+    50% {
+        color: solid; /* Use transparent to reveal the background gradient */
+    }
+}
+
+
 
         main {
             
@@ -62,7 +81,7 @@ fieldset {
     color: var(--primary-color);
     font-weight: bold;
     font-size: 2.5rem; /* Increased font size */
-    font-family: 'Your Fancy Font', cursive; /* Replace 'Your Fancy Font' with the actual font you want to use */
+    font-family: 'Your Fancy Font', cursive;
 }
 
 
@@ -79,57 +98,68 @@ fieldset {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 10px; /* Adjust the border-radius for rounded corners */
+    border-radius: 10px;
     box-sizing: border-box;
-    font-size: 1.3rem; /* Increased font size */
+    font-size: 1.3rem;
+}
+
+/* Add the following style for the select element */
+select {
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust the transparency to match other elements */
 }
 
 
-       button {
+button {
     background-color: var(--primary-color);
     color: #fff;
     padding: 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px; /* Make it round */
     cursor: pointer;
     font-size: 1.2rem;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition for a smooth effect */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background-color: #fff;
-    cursor: pointer; /* Change cursor on hover */
+    background-color: #0056b3;
+    transform: scale(1.1); /* Add a slight scale effect on hover */
 }
 
 
-        button:hover {
-            background-color: #0056b3;
-        }
 
-        h2 {
-            color: var(--primary-color);
-            margin-top: 20px;
-            font-size: 2rem; /* Increased font size */
-        }
+       button:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+    /* Additional styles for transition and box shadow */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+h2 {
+    color: var(--primary-color);
+    margin-top: 20px;
+    font-size: 2rem;
+}
 
-        li {
-            margin-bottom: 8px;
-            font-size: 1.2rem; /* Increased font size */
-        }
+ul {
+    list-style: none;
+    padding: 0;
+}
 
-        li.open {
-            color: var(--success-color);
-        }
+li {
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
 
-        li.closed {
-            color: var(--error-color);
-        }
+li.open {
+    color: var(--success-color);
+}
+
+li.closed {
+    color: var(--error-color);
+}
+
 
         footer {
             margin-top: 20px;
