@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port Scanner</title>
+</head>
+<body>
+    <h1>{{ target }} Port Scanner</h1>
+
+    <form method="post" action="/">
+        <label for="ip_version">Select IP version:</label>
+        <select id="ip_version" name="ip_version" required>
+            <option value="4" {% if ip_version == '4' %}selected{% endif %}>IPv4</option>
+            <option value="6" {% if ip_version == '6' %}selected{% endif %}>IPv6</option>
+        </select>
+        <br>
+        <label for="target">Enter Target IP address:</label>
+        <input type="text" id="target" name="target" required>
+        <button type="submit">Scan Ports</button>
+    </form>
+
+    {% if results %}
+        <h2>Scan Results:</h2>
+        <ul>
+            {% for result in results %}
+                <li>{{ result }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
