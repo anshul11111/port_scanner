@@ -58,3 +58,4 @@ if __name__ == '__main__':
     ascii_banner = pyfiglet.figlet_format("PORT SCANNER", font="slant")
     print(f"{Fore.CYAN}{ascii_banner}{Style.RESET_ALL}")
     app.run(debug=True, threaded=True)
+    

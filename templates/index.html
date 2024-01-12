@@ -5,19 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Port Scanner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Added the Roboto font -->
+
     <style>
         :root {
-            --primary-color: #007bff;
+            --primary-color: green;
             --success-color: #28a745;
             --error-color: #dc3545;
+            --font-family: 'Roboto', sans-serif; /* Set the font family */
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f2f2f2;
-            color: #333;
+            font-family: var(--font-family); /* Use the custom font */
+            background: linear-gradient(59deg, #011f4b, #03396c, #005b96, #6497b1, #25e28a, #011f4b);
+            background-size: 1200% 1200%;
+            animation: backgroundAnimation 6s ease infinite;
+            color: #03396c;
             margin: 0;
-            padding: 20px;
+            padding: 80px;
+            transition: background-color 0.3s ease;
         }
 
         header {
@@ -26,55 +33,75 @@
         }
 
         h1 {
+            
             color: var(--primary-color);
+            font-size: 3rem; /* Increased font size */
         }
 
         main {
+            
             padding: 20px;
         }
 
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+form {
+    background-color: rgba(255, 255, 255, 0.5); /* translucent white */
+    padding: 20px;
+    border-radius: 15px; /* Adjust the border-radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
 
-        fieldset {
+fieldset {
             border: 1px solid #ccc;
             border-radius: 4px;
             padding: 15px;
             margin-bottom: 20px;
         }
 
-        legend {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
+       legend {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 2.5rem; /* Increased font size */
+    font-family: 'Your Fancy Font', cursive; /* Replace 'Your Fancy Font' with the actual font you want to use */
+}
+
 
         label {
+            color:#000;
             display: block;
+            font-weight: bold;
             margin-bottom: 8px;
+            font-size: 1.2rem; /* Increased font size */
         }
 
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+       input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Adjust the border-radius for rounded corners */
+    box-sizing: border-box;
+    font-size: 1.3rem; /* Increased font size */
+}
 
-        button {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+
+       button {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #fff;
+    cursor: pointer; /* Change cursor on hover */
+}
+
 
         button:hover {
             background-color: #0056b3;
@@ -83,6 +110,7 @@
         h2 {
             color: var(--primary-color);
             margin-top: 20px;
+            font-size: 2rem; /* Increased font size */
         }
 
         ul {
@@ -92,6 +120,7 @@
 
         li {
             margin-bottom: 8px;
+            font-size: 1.2rem; /* Increased font size */
         }
 
         li.open {
@@ -105,6 +134,14 @@
         footer {
             margin-top: 20px;
             text-align: center;
+            font-size: 1rem; /* Increased font size */
+        }
+
+        /* Animation */
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 82% }
+            50% { background-position: 100% 19% }
+            100% { background-position: 0% 82% }
         }
     </style>
 </head>
@@ -130,21 +167,5 @@
                 <button type="submit">Scan Ports</button>
             </fieldset>
         </form>
-
-        {% if results %}
-            <section>
-                <h2>Scan Results:</h2>
-                <ul>
-                    {% for port, status in results.items() %}
-                        <li class="{{ 'open' if 'Open' in status else 'closed' }}">Port {{ port }}: {{ status }}</li>
-                    {% endfor %}
-                </ul>
-            </section>
-        {% endif %}
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Your Company</p>
-    </footer>
 </body>
 </html>
