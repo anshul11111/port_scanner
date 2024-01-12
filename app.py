@@ -1,14 +1,13 @@
 from flask import Flask, render_template, request
-from colorama import Fore, Style
-import concurrent.futures
+from colorama import Fore, Style, init
 import socket
 from datetime import datetime
 import pyfiglet
-from colorama import init, Fore, Style
 
 init(autoreset=True)  # Initialize colorama
 
 app = Flask(__name__)
+
 
 def scan_port(target, port):
     try:
@@ -20,16 +19,16 @@ def scan_port(target, port):
     except (socket.gaierror, socket.error):
         pass  # Handle hostname resolution or server not responding errors
 
-
+    return None
 
 
 def port_scan(target, ipv6=False):
     results = []
 
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        # Scan ports 1 to 65,535 concurrently
-        results = list(executor.map(
-            lambda port: scan_port(target, port), range(1, 65536)))
+    for port in range(1, 65536):
+        result = scan_port(target, port)
+        if result:
+            results.append(result)
 
     return results
 
@@ -48,4 +47,4 @@ def index():
 if __name__ == '__main__':
     ascii_banner = pyfiglet.figlet_format("PORT SCANNER", font="slant")
     print(f"{Fore.CYAN}{ascii_banner}{Style.RESET_ALL}")
-    app.run(debug=True)
+    app.run(debug=True, threaded=False)
