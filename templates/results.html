@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port Scanner Results</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(96deg, #981f1f, #2a8714, #234b8b);
+            background-size: 600% 600%;
+            animation: backgroundAnimation 10s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            background-color: #444;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        h1, p, li {
+            color: #fff;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        li.text-success {
+            color: #28a745;
+        }
+
+        li.text-danger {
+            color: #dc3545;
+        }
+
+        /* Media Queries for Improved Responsiveness */
+
+        /* For screens smaller than 600px */
+        @media (max-width: 600px) {
+            #container {
+                padding: 10px;
+                margin: 10px;
+            }
+        }
+
+        /* For screens smaller than 400px */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            li {
+                font-size: 0.9em;
+            }
+        }
+
+        /* Animation */
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 32% }
+            50% { background-position: 100% 69% }
+            100% { background-position: 0% 32% }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Port Scanner Results</h1>
+        <p>Scanning results for target: {{ target }}</p>
+
+        <ul>
+            {% for port, status in results.items() %}
+                {% set simplified_status = status.replace('\x1b[32m', '').replace('\x1b[0m', '').replace('\x1b[31m', '') %}
+                <li class="{{ 'text-success' if 'Open' in status else 'text-danger' }}">Port {{ port }}: {{ simplified_status }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
